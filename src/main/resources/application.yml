@@ -1,0 +1,124 @@
+spring:
+  application:
+    name: music-app-backend
+
+  datasource:
+    # Keep credentials in env vars so secrets are never committed to git.
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/wavy}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: ${DB_MAX_POOL_SIZE:10}
+      minimum-idle: ${DB_MIN_IDLE:2}
+      idle-timeout: ${DB_IDLE_TIMEOUT_MS:30000}
+      max-lifetime: ${DB_MAX_LIFETIME_MS:180000}
+      connection-timeout: ${DB_CONNECTION_TIMEOUT_MS:20000}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: ${JPA_SHOW_SQL:false}
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  mail:
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail.smtp.auth: ${MAIL_SMTP_AUTH:true}
+      mail.smtp.starttls.enable: ${MAIL_SMTP_STARTTLS:false}
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            # Google OAuth secrets should always come from env/secret manager.
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+
+  data:
+    redis:
+      repositories:
+        enabled: false
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} %-5level [%thread] [%X{traceId:-no-trace}] %logger{36} - %msg%n"
+  level:
+    org:
+      springframework:
+        security: ${SPRING_SECURITY_LOG_LEVEL:INFO}
+
+application:
+  base-url: ${APP_BASE_URL:http://localhost:8080}
+  application-name: ${APP_NAME:Wavy}
+  login-page-url: ${APP_LOGIN_PAGE_URL:http://localhost:3000/auth/login}
+  reset-password-url: ${APP_RESET_PASSWORD_URL:${application.base-url}/api/auth/forgot-password}
+  frontend-reset-password-url: ${APP_FRONTEND_RESET_PASSWORD_URL:http://localhost:3000/auth/reset-password}
+  login-success-url: ${APP_LOGIN_SUCCESS_URL:${application.base-url}/auth/login-success}
+
+jobrunr:
+  database:
+    database-platform: postgresql
+    table-prefix: jobrunr_
+  background-job-server:
+    enabled: true
+  dashboard:
+    enabled: ${JOBRUNR_DASHBOARD_ENABLED:false}
+    port: ${JOBRUNR_DASHBOARD_PORT:8000}
+
+jwt:
+  # Issuer appears in "iss" claim and is validated when reading tokens.
+  issuer: ${JWT_ISSUER:music-app-backend}
+  # Key id appears in JWT header as "kid" and in the JWKS endpoint.
+  key-id: ${JWT_KEY_ID:dev-rsa-key-1}
+  # Optional PEM keys for stable signing across restarts.
+  # If both are empty, app generates an ephemeral RSA key pair (dev convenience).
+  rsa-private-key-pem: ${JWT_RSA_PRIVATE_KEY_PEM:}
+  rsa-public-key-pem: ${JWT_RSA_PUBLIC_KEY_PEM:}
+  allow-ephemeral-keys: ${JWT_ALLOW_EPHEMERAL_KEYS:true}
+  expiration: ${JWT_EXPIRATION_MS:3600000}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION_MS:1209600000}
+
+app:
+  s3:
+    bucket-name: ${S3_BUCKET_NAME:music-app-public-dev}
+    region: ${S3_REGION:us-east-1}
+    access-key: ${S3_ACCESS_KEY}
+    secret-key: ${S3_SECRET_KEY}
+    base-url: ${S3_BASE_URL:http://localhost:4566/dummy-bucket-local}
+    storage-class: ${S3_STORAGE_CLASS:STANDARD}
+
+  oauth2:
+    # Internal one-time code lifetime (seconds) used by /oauth2/exchange flow.
+    authorization-code-ttl-seconds: ${APP_OAUTH2_AUTH_CODE_TTL_SECONDS:3600}
+    cleanup-interval-ms: ${APP_OAUTH2_CLEANUP_INTERVAL_MS:3600000}
+    cleanup-initial-delay-ms: ${APP_OAUTH2_CLEANUP_INITIAL_DELAY_MS:60000}
+
+  refresh:
+    cleanup-interval-ms: ${APP_REFRESH_CLEANUP_INTERVAL_MS:3600000}
+    cleanup-initial-delay-ms: ${APP_REFRESH_CLEANUP_INITIAL_DELAY_MS:60000}
+    cleanup-retention-ms: ${APP_REFRESH_CLEANUP_RETENTION_MS:604800000}
+
+  login-protection:
+    max-failed-attempts: ${APP_LOGIN_MAX_FAILED_ATTEMPTS:5}
+    lock-duration-ms: ${APP_LOGIN_LOCK_DURATION_MS:900000}
+
+  security:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:3000}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Welcome to <span th:text="${applicationName}">Our Application</span></title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 8px;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .content {
+            margin-top: 20px;
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: #10b981;
+            color: #ffffff !important;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="header">
+        Welcome to <span th:text="${applicationName}">Our Application</span> 🎵
+    </div>
+
+    <div class="content">
+        <p>Hello <strong th:text="${firstName}">User</strong>,</p>
+
+        <p>
+            Welcome to <strong th:text="${applicationName}">Our Application</strong>!
+            We're excited to have you on board.
+        </p>
+
+        <p>
+            To get started, please confirm your email address by clicking the button below.
+        </p>
+
+        <p style="text-align: center;">
+            <a th:href="${verificationLink}" class="button">
+                Verify Email Address
+            </a>
+        </p>
+
+        <p>
+            If you didn’t create this account, you can safely ignore this email.
+        </p>
+    </div>
+
+    <div class="footer">
+        © <span th:text="${applicationName}">Application</span>.
+        All rights reserved.
+    </div>
+</div>
+</body>
+</html>

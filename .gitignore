@@ -1,0 +1,31 @@
+# Default ignored files
+/shelf/
+/.idea/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# ===== Java / Maven =====
+target/
+*.class
+*.log
+
+# ===== IntelliJ / IDE =====
+.idea/
+*.iml
+
+# ===== Maven local cache (NEVER COMMIT) =====
+.m2/
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== Env / Secrets =====
+.env
+.env.*
+!.env.example
+
+# ===== Spring =====
+application-prod.yml
