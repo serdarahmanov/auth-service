@@ -47,12 +47,3 @@ jwt:
   key-id: itest-rsa-key-1
   expiration: 3600000
   refresh-expiration: 1209600000
-
-app:
-  s3:
-    bucket-name: test-bucket
-    region: us-east-1
-    access-key: test
-    secret-key: test
-    base-url: http://localhost:4566/test
-    storage-class: STANDARD
