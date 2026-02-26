@@ -20,8 +20,8 @@ import com.serdarahmanov.music_app_backend.auth.verification.VerificationCode;
 import com.serdarahmanov.music_app_backend.auth.jobs.resetEmailJob.SendResetPasswordEmailJob;
 import com.serdarahmanov.music_app_backend.auth.jobs.welcomeEmailJob.SendWelcomeEmailJob;
 import com.serdarahmanov.music_app_backend.auth.verification.VerificationRepo;
-import com.serdarahmanov.music_app_backend.users.Users;
-import com.serdarahmanov.music_app_backend.users.repo.UserRepository;
+import com.serdarahmanov.music_app_backend.auth.identity.Users;
+import com.serdarahmanov.music_app_backend.auth.identity.repo.UserRepository;
 import com.serdarahmanov.music_app_backend.utility.customExceptions.ResetPasswordTokenNotExistException;
 import com.serdarahmanov.music_app_backend.utility.customExceptions.VerificationCodeNotFoundException;
 import com.serdarahmanov.music_app_backend.utility.config.JwtProperties;
@@ -151,8 +151,6 @@ public class AuthService {
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getFirstName(),
-                user.getLastName(),
                 user.isEnabled(),
                 user.isPasswordSet(),
                 user.getAuthoritiesAsStrings()
@@ -197,11 +195,7 @@ public class AuthService {
         Users user = new Users(
                 request.getEmail(),
                 request.getUsername(),
-                encodedPassword,
-                request.getFirstName(),
-                request.getLastName(),
-                request.getAvatar(),
-                request.getBio()
+                encodedPassword
         );
         user.setPasswordSet(true);
 

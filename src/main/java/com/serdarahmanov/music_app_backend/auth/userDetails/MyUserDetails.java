@@ -1,6 +1,6 @@
 package com.serdarahmanov.music_app_backend.auth.userDetails;
 
-import com.serdarahmanov.music_app_backend.users.Users;
+import com.serdarahmanov.music_app_backend.auth.identity.Users;
 import com.serdarahmanov.music_app_backend.auth.rolesAndPermissions.Permission;
 import com.serdarahmanov.music_app_backend.auth.rolesAndPermissions.Role;
 import org.springframework.security.core.GrantedAuthority;
@@ -86,13 +86,5 @@ public class MyUserDetails implements UserDetails {
 
     public boolean isPasswordSet() {
         return user.isPasswordSet();
-    }
-
-    public String getFirstName(){
-        return user.getFirstName();
-    }
-
-    public String getLastName(){
-        return user.getLastName();
     }
 }

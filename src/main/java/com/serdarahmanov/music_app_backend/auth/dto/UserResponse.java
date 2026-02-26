@@ -1,6 +1,6 @@
 package com.serdarahmanov.music_app_backend.auth.dto;
 
-import com.serdarahmanov.music_app_backend.users.Users;
+import com.serdarahmanov.music_app_backend.auth.identity.Users;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -13,10 +13,8 @@ public class UserResponse {
     private Long id;
     private String email;
     private String userName;
-    private String firstName;
-    private String lastName;
-    private String avatarUrl;
-    private String bio;
+    private boolean enabled;
+    private boolean passwordSet;
     private Set<String> role;
 
     public static UserResponse fromEntity(Users user) {
@@ -24,10 +22,8 @@ public class UserResponse {
                 .id(user.getId())
                 .email(user.getEmail())
                 .userName(user.getUsername())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .avatarUrl(user.getAvatarKey())
-                .bio(user.getBio())
+                .enabled(user.isEnabled())
+                .passwordSet(user.isPasswordSet())
                 .role(user.getRolesAsString())
                 .build();
     }

@@ -6,8 +6,8 @@ import com.serdarahmanov.music_app_backend.auth.forcodex.service.Oauth2Authoriza
 import com.serdarahmanov.music_app_backend.auth.refresh.RefreshTokenRepository;
 import com.serdarahmanov.music_app_backend.auth.security.store.LoginAttemptStore;
 import com.serdarahmanov.music_app_backend.auth.security.store.RedisLoginAttemptStore;
-import com.serdarahmanov.music_app_backend.users.Users;
-import com.serdarahmanov.music_app_backend.users.repo.UserRepository;
+import com.serdarahmanov.music_app_backend.auth.identity.Users;
+import com.serdarahmanov.music_app_backend.auth.identity.repo.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,11 +89,7 @@ class AuthRefreshLifecycleIntegrationTest {
         Users user = new Users(
                 "alice@example.com",
                 "alice",
-                passwordEncoder.encode("secret123"),
-                "Alice",
-                "Doe",
-                null,
-                null
+                passwordEncoder.encode("secret123")
         );
         user.setEnabled(true);
         user.setPasswordSet(true);

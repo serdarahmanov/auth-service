@@ -1,7 +1,7 @@
 package com.serdarahmanov.music_app_backend.auth.refresh;
 
 import com.serdarahmanov.music_app_backend.auth.dto.SessionInfoResponse;
-import com.serdarahmanov.music_app_backend.users.Users;
+import com.serdarahmanov.music_app_backend.auth.identity.Users;
 import com.serdarahmanov.music_app_backend.auth.refresh.exceptions.RefreshTokenExpiredException;
 import com.serdarahmanov.music_app_backend.auth.refresh.exceptions.RefreshTokenInvalidException;
 import com.serdarahmanov.music_app_backend.auth.refresh.exceptions.RefreshTokenOwnershipException;

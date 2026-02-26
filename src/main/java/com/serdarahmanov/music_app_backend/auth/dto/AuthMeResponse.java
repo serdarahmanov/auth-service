@@ -6,8 +6,6 @@ public record AuthMeResponse(
         Long id,
         String username,
         String email,
-        String firstName,
-        String lastName,
         boolean enabled,
         boolean passwordSet,
         Set<String> roles

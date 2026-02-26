@@ -35,35 +35,16 @@ public class CreateUserRequest {
     @NotBlank(message = "Password confirmation is required")
     private String passwordConfirmation;
 
-    @NotBlank(message = "First name is required")
-    private String firstName;
-
-    @NotBlank(message = "Last name is required")
-    private String lastName;
-
-
-    // Optional: user may or may not provide these
-    private String avatar;
-    private String bio;
-
     public CreateUserRequest(
             String email,
             String username,
             String password,
-            String passwordConfirmation,
-            String firstName,
-            String lastName,
-            String avatar,
-            String bio
+            String passwordConfirmation
     ) {
         this.email = email;
         this.username=username;
         this.password = password;
         this.passwordConfirmation = passwordConfirmation;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.avatar = avatar;
-        this.bio = bio;
     }
 
 

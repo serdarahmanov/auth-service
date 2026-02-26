@@ -1,7 +1,7 @@
 package com.serdarahmanov.music_app_backend.auth.forgotEmail;
 
 import com.serdarahmanov.music_app_backend.entity.AbstractEntity;
-import com.serdarahmanov.music_app_backend.users.Users;
+import com.serdarahmanov.music_app_backend.auth.identity.Users;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;

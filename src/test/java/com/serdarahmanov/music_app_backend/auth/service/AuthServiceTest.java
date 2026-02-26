@@ -11,8 +11,8 @@ import com.serdarahmanov.music_app_backend.auth.security.LoginAttemptService;
 import com.serdarahmanov.music_app_backend.auth.userDetails.MyUserDetails;
 import com.serdarahmanov.music_app_backend.auth.verification.VerificationRepo;
 import com.serdarahmanov.music_app_backend.entity.AbstractEntity;
-import com.serdarahmanov.music_app_backend.users.Users;
-import com.serdarahmanov.music_app_backend.users.repo.UserRepository;
+import com.serdarahmanov.music_app_backend.auth.identity.Users;
+import com.serdarahmanov.music_app_backend.auth.identity.repo.UserRepository;
 import com.serdarahmanov.music_app_backend.utility.config.JwtProperties;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -87,7 +87,7 @@ class AuthServiceTest {
         Authentication authentication = new UsernamePasswordAuthenticationToken(principal, null, principal.getAuthorities());
         when(authenticationManager.authenticate(any())).thenReturn(authentication);
 
-        Users user = new Users("alice@example.com", "alice", "encoded", "Alice", "Doe", null, null);
+        Users user = new Users("alice@example.com", "alice", "encoded");
         when(userRepository.findByUsername("alice")).thenReturn(Optional.of(user));
         when(jwtService.generateToken(principal)).thenReturn("access-token");
         when(refreshTokenService.issue(user, "ua", "127.0.0.1")).thenReturn("refresh-token");
@@ -107,7 +107,7 @@ class AuthServiceTest {
 
     @Test
     void logoutRevokesProvidedRefreshTokenFamilyForUser() {
-        Users user = new Users("alice@example.com", "alice", "encoded", "Alice", "Doe", null, null);
+        Users user = new Users("alice@example.com", "alice", "encoded");
         setId(user, 42L);
 
         MyUserDetails principal = new MyUserDetails(user);

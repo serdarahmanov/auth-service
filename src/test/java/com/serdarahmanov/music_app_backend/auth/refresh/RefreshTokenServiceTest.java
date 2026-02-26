@@ -2,7 +2,7 @@ package com.serdarahmanov.music_app_backend.auth.refresh;
 
 import com.serdarahmanov.music_app_backend.entity.AbstractEntity;
 import com.serdarahmanov.music_app_backend.auth.refresh.exceptions.RefreshTokenReuseDetectedException;
-import com.serdarahmanov.music_app_backend.users.Users;
+import com.serdarahmanov.music_app_backend.auth.identity.Users;
 import com.serdarahmanov.music_app_backend.utility.config.AppRefreshProperties;
 import com.serdarahmanov.music_app_backend.utility.config.JwtProperties;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,7 +44,7 @@ class RefreshTokenServiceTest {
         appRefreshProperties.setCleanupRetentionMs(604_800_000L);
 
         refreshTokenService = new RefreshTokenService(refreshTokenRepository, jwtProperties, appRefreshProperties);
-        user = new Users("alice@example.com", "alice", "password", "Alice", "Doe", null, null);
+        user = new Users("alice@example.com", "alice", "password");
     }
 
     @Test

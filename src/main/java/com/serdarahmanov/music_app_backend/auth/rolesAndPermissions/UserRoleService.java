@@ -1,7 +1,7 @@
 package com.serdarahmanov.music_app_backend.auth.rolesAndPermissions;
 
-import com.serdarahmanov.music_app_backend.users.Users;
-import com.serdarahmanov.music_app_backend.users.repo.UserRepository;
+import com.serdarahmanov.music_app_backend.auth.identity.Users;
+import com.serdarahmanov.music_app_backend.auth.identity.repo.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;

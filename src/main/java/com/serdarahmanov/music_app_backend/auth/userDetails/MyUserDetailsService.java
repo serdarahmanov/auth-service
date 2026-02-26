@@ -1,7 +1,7 @@
 package com.serdarahmanov.music_app_backend.auth.userDetails;
 
-import com.serdarahmanov.music_app_backend.users.Users;
-import com.serdarahmanov.music_app_backend.users.repo.UserRepository;
+import com.serdarahmanov.music_app_backend.auth.identity.Users;
+import com.serdarahmanov.music_app_backend.auth.identity.repo.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

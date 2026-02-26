@@ -1,7 +1,7 @@
 package com.serdarahmanov.music_app_backend.auth.verification;
 
 import com.serdarahmanov.music_app_backend.entity.AbstractEntity;
-import com.serdarahmanov.music_app_backend.users.Users;
+import com.serdarahmanov.music_app_backend.auth.identity.Users;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;

@@ -79,7 +79,7 @@ Replaced shared-secret JWT signing with RSA signing and key identification:
 Implemented server-side refresh-token flow:
 
 - Added refresh token persistence and migration:
-  - `src/main/resources/db/migration/V11__create_refresh_token_table.sql`
+  - `src/main/resources/db/migration/V11__auth_create_refresh_token_table.sql`
   - `src/main/java/com/serdarahmanov/music_app_backend/auth/refresh/RefreshToken.java`
   - `src/main/java/com/serdarahmanov/music_app_backend/auth/refresh/RefreshTokenRepository.java`
 - Added refresh token service:

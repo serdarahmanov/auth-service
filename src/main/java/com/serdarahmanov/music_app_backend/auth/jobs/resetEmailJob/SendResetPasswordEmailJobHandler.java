@@ -3,8 +3,8 @@ package com.serdarahmanov.music_app_backend.auth.jobs.resetEmailJob;
 import com.serdarahmanov.music_app_backend.auth.email.EmailService;
 import com.serdarahmanov.music_app_backend.auth.forgotEmail.PasswordResetToken;
 import com.serdarahmanov.music_app_backend.auth.forgotEmail.PasswordResetTokenRepo;
-import com.serdarahmanov.music_app_backend.users.Users;
-import com.serdarahmanov.music_app_backend.users.repo.UserRepository;
+import com.serdarahmanov.music_app_backend.auth.identity.Users;
+import com.serdarahmanov.music_app_backend.auth.identity.repo.UserRepository;
 import com.serdarahmanov.music_app_backend.utility.ApplicationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.jobrunr.jobs.lambdas.JobRequestHandler;
@@ -75,7 +75,7 @@ public class SendResetPasswordEmailJobHandler
                         + "/api/auth/forgot-password?code=" + token.getCode();
 
         Context context = new Context();
-        context.setVariable("firstName", user.getFirstName());
+        context.setVariable("username", user.getUsername());
         context.setVariable("verificationLink", verificationLink);
         context.setVariable("applicationName", applicationProperties.getApplicationName());
 
